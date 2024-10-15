@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortner</title>
+</head>
+<body>
+    <h1>URL Shortner</h1><br>
+    <% if (y_url) { %>
+      <h3>Your shorted URL is : <%= y_url %></h3>
+    <% } %>
+    <form method="post" action="/">
+        <label for="url">Enter URL for Shorting</label>
+        <input type="text" id="url" name="url" placeholder="https:/www.google.com/">
+        <button type="submit">Generate</button>
+    </form><br>
+    <table>
+        <tr>
+            <th>Sr no.</th>
+            <th>Original URL</th>
+            <th>Short URL</th>
+            <th>Watch Count</th>
+        </tr>
+        
+            <% for( let i = 0; i < model.length; i++ ) { %>
+        <tr>
+             <td><%=(i+1)%></td>
+             <td><%= model[i].originalURL %></td>
+             <td><%= model[i].shortURL %></td>
+             <td><%= model[i].watchCount %></td>
+        </tr>
+            <% } %>
+    </table>
+</body>
+</html>
