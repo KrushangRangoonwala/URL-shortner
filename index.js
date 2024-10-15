@@ -1,6 +1,7 @@
 const express = require('express');
 const { connectDB } = require('./connect');
-const router = require('./router/url');
+const urlRouter = require('./router/url');
+const userRouter = require('./router/user');
 const path = require('path');
 const ejs = require('ejs');
 
@@ -12,7 +13,8 @@ app.use(express.urlencoded({ extended: 'false' }));
 app.set('view engine','ejs');
 app.set('views',path.resolve('./view'));
 
-app.use('/', router);
+app.use('/', urlRouter);
+app.use('/user', userRouter);
 
 app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`) });
 
