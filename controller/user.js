@@ -3,9 +3,9 @@ const { setuser } = require('../service/auth');
 
 async function handleSignUp(req,res){
     let body = req.body;
-    let user_email = body.email;
+    const user_email = await user.findOne({email : body.email});
 
-    if(user_email===(user.findOne({email : body.email}))){
+    if(user_email){
         return res.render('signup',{
             msg : true
         })
@@ -14,12 +14,12 @@ async function handleSignUp(req,res){
     let newUser = new user(body);
     let savedUser = await newUser.save();
     console.log(savedUser);
-    return res.render('signin');
+    return res.redirect("/user/signin"); 
 }
 
 async function handleSignIn(req,res){
     const { email, password } = req.body;
-    let user_data = user.findOne({ email , password });
+    const user_data = await user.findOne({ email , password });
 
     if(!user_data){
         return res.render('signin',{
@@ -29,15 +29,20 @@ async function handleSignIn(req,res){
 
     const token = setuser(user_data);
     res.cookie('uid',token);
-    return res.redirect('/')
+    return res.redirect('/');
 }
 
 async function SignInView(req,res) {
-    return res.render('signin');
+    console.log("signin view");
+    return res.render("signin",{
+        msg : false, 
+    });
 }
 
-async function SignInView(req,res) {
-    return res.render('signup');
+async function SignUpView(req,res) {
+    return res.render("signup",{
+        msg : false, 
+    });
     
 }
 

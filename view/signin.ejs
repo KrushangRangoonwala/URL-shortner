@@ -6,7 +6,7 @@
     <title>signup</title>
 </head>
 <body>
-    <form action="/user/signin" method="post">
+    <form action="/user/signin" method="post" autocomplete="on">
         <labale for="email">Email</labale>
         <input type="string" id="email" name="email"><br>
 
@@ -18,7 +18,7 @@
 
     <% if (msg) { %>
        <p> Email or Password is incorrect <P>
-       <p> If you don't have account then plz <a href="./signup.ejs">signup</a><P>
+       <p> If you don't have account then plz <a href="/user/signup">signup</a><P>
     <% } %>
     
 </body>
