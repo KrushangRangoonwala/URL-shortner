@@ -15,5 +15,11 @@
 
         <input type="submit" value="SignIn">
     </form>
+
+    <% if (msg) { %>
+       <p> Email or Password is incorrect <P>
+       <p> If you don't have account then plz <a href="./signup.ejs">signup</a><P>
+    <% } %>
+    
 </body>
 </html>

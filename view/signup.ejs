@@ -6,7 +6,7 @@
     <title>signup</title>
 </head>
 <body>
-    <form action="/user/signup" method="post">
+    <form action="/user/signup" method="post" autocomplete="on">
         <labale for="name">Name</labale>
         <input type="string" id="name" name="name"><br>
 
@@ -18,5 +18,9 @@
 
         <input type="submit" value="SignUp">
     </form>
+    <% if (msg) { %>
+        <p color="red">This email has been already assigned</p>
+        <p color="red">Want to <a href="./signin.ejs">signin</a> ?</p>
+    <% } %>
 </body>
 </html>

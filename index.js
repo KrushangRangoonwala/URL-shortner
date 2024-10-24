@@ -4,6 +4,7 @@ const urlRouter = require('./router/url');
 const userRouter = require('./router/user');
 const path = require('path');
 const ejs = require('ejs');
+const { restrictToLoggedInUser } = require('./middleware/auth')
 
 const PORT = 8005;
 const app = express();
@@ -13,7 +14,7 @@ app.use(express.urlencoded({ extended: 'false' }));
 app.set('view engine','ejs');
 app.set('views',path.resolve('./view'));
 
-app.use('/', urlRouter);
+app.use('/',restrictToLoggedInUser, urlRouter);
 app.use('/user', userRouter);
 
 app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`) });
